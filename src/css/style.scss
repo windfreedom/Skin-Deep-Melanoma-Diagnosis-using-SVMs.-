@@ -1,0 +1,275 @@
+@import "globals.scss";
+@import "anims.scss";
+@import "colors.scss";
+
+
+@mixin unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+
+/*
+  General preferences
+  Links should not be underlined. Links of color InheritColor should change color.
+  The body should have an off-white background.
+*/
+
+a {
+  text-decoration: none!important;
+}
+
+a.InheritColor {
+  color: inherit;
+}
+
+body {
+  background-color: #f2f2f2;
+}
+
+// .mdl-card {
+//   min-height: 0!important;
+//   min-height: auto!important;
+//
+// }
+
+/*
+  Navigation bar and drawer
+  The navbar appears on desktops only. The drawer appears on mobile devices only.
+  All inactive links should have no border and no background and be slightly faded.
+  Active navbar links should have a bottom border and a translucent white background.
+  Active drawer links should have a translucent dark background.
+  All visual roperties should crossfade.
+*/
+
+.mdl-navigation__link {
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  opacity: 0.8;
+  transition: all 0.5s linear;
+}
+.mdl-navigation__link.CurrentTabLink {
+  border-bottom: 2px solid #ff4081;
+  opacity: 1;
+  background: rgba(255,255,255,0.1);
+  transition: all 0.5s linear;
+}
+
+.mdl-navigation__link.CurrentDrawerLink {
+  opacity: 1;
+  transition: all 0.5s linear;
+  background: #e0e0e0;
+}
+
+@media screen and (min-width: 1025px) {
+  .MobileDrawer .mdl-layout__drawer-button {
+    display: none!important;
+  }
+  .MobileDrawer .mdl-layout__header-row {
+    padding-left: 40px !important;
+  }
+
+}
+
+@media screen and (max-width: 1024px) {
+  .DesktopNav .mdl-navigation {
+    display: none!important;
+  }
+
+}
+
+/*
+  Grid padding
+  Desktops should have a 40px padding around the grid.
+  Moblie devices should have no padding around the grid.
+*/
+
+@media screen and (min-width: 1025px) {
+  .MainGrid {
+    padding: 40px !important;
+    max-width: 1800px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .MainGrid {
+    padding: 0 !important;
+  }
+}
+
+/*
+  Cards
+  On desktops, cards are a little roomier.
+*/
+$card-padding: 32px;
+
+.CardTitle {
+  padding: 0 !important;
+  width: 100%;
+  h2 {
+    width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 480px) {
+  .CardTitle h2 {
+    padding: $card-padding $card-padding 16px;
+    font-size: 20pt;
+  }
+  .mdl-card__actions {
+    padding-left: $card-padding - 16px;
+  }
+  .mdl-card__supporting-text {
+    padding-left: $card-padding;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .CardTitle h2 {
+    padding: 16px;
+    font-size: 15pt;
+  }
+  .mdl-card__actions {
+    padding-left: 0;
+  }
+  .mdl-card__supporting-text {
+    width: 85%;
+  }
+
+}
+@media screen and (max-width: 360px) {
+  .CardTitle h2 {
+    font-size: 12pt;
+  }
+}
+
+/*
+  Text cards
+  Text cards should be big, as big as possible up to a width of 800 px.
+  Text content should be Roboto Light, and there should be a margin between paragraphs.
+*/
+
+.TextCard {
+  width: 100%!important;
+  max-width: 800px!important;
+  margin: auto !important;
+}
+
+.ContentLine {
+  font-family: Roboto;
+  font-weight: 300;
+  line-height: 130%;
+}
+
+.ContentLine + .ContentLine {
+  margin-top: 1em;
+}
+
+@media screen and (min-width: 480px) {
+  .ContentLine {
+    font-size: 14pt;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .ContentLine {
+    font-size: 12pt;
+  }
+}
+@media screen and (max-width: 359px) {
+  .ContentLine {
+    font-size: 10pt;
+  }
+}
+
+/*
+  Image cards
+  Image cards should have a title in white over a translucent dark background.
+*/
+
+.ImageCard .CardTitle {
+  color: white;
+  padding-bottom: 100% !important;
+  background-position: top left;
+  background-size: cover;
+}
+.ImageCard .CardTitle h2 {
+  background: rgba(0,0,0,0.4);
+  padding: 16px;
+}
+
+@media screen and (min-width: 480px) {
+  .ImageCard .CardTitle h2 {
+    padding: 16px $card-padding !important;
+  }
+  .TextCard.FaceCard .CardTitle h2 {
+    padding: 16px $card-padding !important;
+  }
+
+}
+
+/*
+  Full cards
+  Full cards have no text and consist entirely of images.
+*/
+
+.FullCard {
+  width: 100%!important;
+}
+
+.FullCard .CardTitle h2 {
+  margin-bottom: -100% !important;
+}
+
+
+.TextCard.MainCard .CardTitle {
+  height: 500px;
+  max-height: 60vh!important;
+  background: url(http://patrickpan.com/skindeep.bg.jpg) top center / cover;
+  color:white;
+  h2 {
+    background: rgba(0,0,0,0.4);
+  }
+
+}
+
+.TextCard.DiagCard .CardTitle {
+  height: 500px;
+  max-height: 60vh!important;
+  color:white;
+  h2 {
+    background: rgba(0,0,0,0.4);
+  }
+
+}
+
+#dropzone {
+  margin: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  div {
+    flex: 1;
+    text-align: center;
+  }
+}
+.margin-center {
+  margin: auto;
+}
+
+#token-entry {
+  display: flex;
+  align-items: center;
+  width:100%;
+  & > * {
+    margin: 10px;
+  }
+  & > div {
+    flex: 3;
+  }
+  & > button {
+    flex: 1;
+  }
+}
